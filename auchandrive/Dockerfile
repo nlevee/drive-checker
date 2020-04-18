@@ -1,10 +1,12 @@
-FROM alpine as fetcher
+FROM alpine:3.11 as fetcher
+
+ARG BUILD_VERSION=v0.1.1
 
 RUN apk add --no-cache wget && \
-    wget https://github.com/nlevee/go-auchan-drive-checker/releases/download/v0.1.1/go-auchan-drive-checker_v0.1.1_linux_amd64.tar.gz && \
-    tar xvzf go-auchan-drive-checker_v0.1.1_linux_amd64.tar.gz
+    wget https://github.com/nlevee/go-auchan-drive-checker/releases/download/${BUILD_VERSION}/go-auchan-drive-checker_${BUILD_VERSION}_linux_amd64.tar.gz && \
+    tar xvzf go-auchan-drive-checker_${BUILD_VERSION}_linux_amd64.tar.gz
 
-FROM alpine 
+FROM alpine:3.11
 
 WORKDIR /usr/local/bin
 

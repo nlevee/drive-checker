@@ -4,10 +4,15 @@ ENV PORT 3000
 
 WORKDIR /application
 
-RUN apk add --no-cache git python && \
+RUN apk --no-cache --virtual build-dependencies add \
+    git \
+    python \
+    make \
+    g++ && \
     git clone https://github.com/adupays/find-a-pickup-slots.git ./ && \
     npm ci && \
-    npm run build
+    npm run build && \
+    apk del build-dependencies
 
 CMD [ "npm", "start" ]
 
