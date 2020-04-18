@@ -12,13 +12,20 @@ networks:
 
 services:
   frontend: 
+    depends_on: 
+      - auchandrive
     build: frontend/
     ports:
-      - 80:3000
+      - "80:3000"
+    environment:
+      AUCHANDRIVE_SERVICE_HOST: auchandrive
+      AUCHANDRIVE_SERVICE_PORT: 8080
 
   auchandrive: 
     build: auchandrive/
     command:
       - "930"
+    ports:
+      - "8080"
 
   
