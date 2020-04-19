@@ -14,17 +14,25 @@ services:
   frontend: 
     depends_on: 
       - auchandrive
+      - carrefourdrive
     build: frontend/
     ports:
       - "80:3000"
     environment:
       AUCHANDRIVE_SERVICE_HOST: auchandrive
       AUCHANDRIVE_SERVICE_PORT: 8080
+      CARREFOURDRIVE_SERVICE_HOST: carrefourdrive
+      CARREFOURDRIVE_SERVICE_PORT: 8080
 
   auchandrive: 
     build: auchandrive/
     env_file:
       - auchandrive/woos-vars.env
+    ports:
+      - "8080"
+
+  carrefourdrive: 
+    build: carrefourdrive/
     ports:
       - "8080"
   
