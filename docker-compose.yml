@@ -23,9 +23,8 @@ services:
 
   auchandrive: 
     build: auchandrive/
-    command:
-      - "930"
+    env_file:
+      - auchandrive/woos-vars.env
     ports:
       - "8080"
-
   
